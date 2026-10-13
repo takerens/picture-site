@@ -1,0 +1,21 @@
+{
+  "name": "picture-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=./",
+    "preview": "vite preview",
+    "test": "node --test src/",
+    "add-trip": "node --env-file=.env.local scripts/add-trip.js"
+  },
+  "devDependencies": {
+    "aws4fetch": "^1.0.20",
+    "sharp": "^0.35.5",
+    "vite": "^6.4.4"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "@phosphor-icons/core": "^2.1.1"
+  }
+}
