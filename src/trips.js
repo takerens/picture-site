@@ -2,7 +2,7 @@ import { parseTrip } from './parse.js';
 import manifest from './photos.json';
 
 // photos.json is written by `npm run add-trip`; the files themselves live in Cloudflare R2.
-const base = (import.meta.env.VITE_PHOTO_BASE ?? '').replace(/\/$/, '');
+const base = (import.meta.env.VITE_PHOTO_BASE ?? '').trim().replace(/\/$/, ''); // tolerate pasted spaces / trailing slash
 const url = (slug, size, name) => `${base}/${slug}/${size}/${encodeURIComponent(name)}.jpg`;
 
 export const trips = Object.keys(manifest).length
