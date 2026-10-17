@@ -7,6 +7,7 @@ const url = (slug, size, name) => `${base}/${slug}/${size}/${encodeURIComponent(
 
 export const trips = Object.keys(manifest).length
   ? Object.entries(manifest)
+      .reverse() // photos.json is in upload order, so same-month ties end up latest-uploaded first
       .map(([folder, t]) => {
         const trip = parseTrip(folder);
         if (!trip || !t.photos.length) return null;
@@ -19,7 +20,7 @@ export const trips = Object.keys(manifest).length
         };
       })
       .filter(Boolean)
-      .sort((a, b) => b.sortKey.localeCompare(a.sortKey))
+      .sort((a, b) => b.sortKey.localeCompare(a.sortKey)) // newest month first; sort is stable, so ties keep the order above
   : demoTrips();
 
 // Sample trips so the layout is visible before any photos are added.
