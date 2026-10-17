@@ -29,6 +29,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - name: Check photo URL is set
+        run: test -n "${{ vars.VITE_PHOTO_BASE }}" || { echo "::error::Add a repository variable VITE_PHOTO_BASE (Settings > Secrets and variables > Actions > Variables) with your R2 public URL."; exit 1; }
       - run: npm run build
         env:
           VITE_PHOTO_BASE: ${{ vars.VITE_PHOTO_BASE }} # set in repo Settings > Secrets and variables > Actions > Variables
